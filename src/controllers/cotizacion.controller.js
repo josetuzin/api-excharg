@@ -1,19 +1,43 @@
 const fetch = require('node-fetch')
-const axios = require('axios')
 
 const cotizacionController = {}
 
-
 cotizacionController.getCotizacionDolar = async (req, res) => {
-    console.log('cotizacion dolar')
+
+    const cotizacion = await fetch('https://api.cambio.today/v1/quotes/USD/ARS/json?quantity=1&key=4838|NQCQkXuOq1r9LkiQOZO~uYaOBZDk3GEB')
+    .then(response => response.json())
+    .then(json => {
+        const precio = String((json.result.value).toFixed(2))
+        res.send({
+            "moneda": 'dolar',
+            "valor": precio
+        })
+    })
+
 }
 
 cotizacionController.getCotizacionEuro = async (req, res) => {
-    console.log('cotizacion euro')
+    const cotizacion = await fetch('https://api.cambio.today/v1/quotes/EUR/ARS/json?quantity=1&key=4838|NQCQkXuOq1r9LkiQOZO~uYaOBZDk3GEB')
+    .then(response => response.json())
+    .then(json => {
+        const precio = String((json.result.value).toFixed(2))
+        res.send({
+            "moneda": 'euro',
+            "valor": precio
+        })
+    })
 }
 
 cotizacionController.getCotizacionReal = async (req, res) => {
-    console.log('cotizacion real')
+    const cotizacion = await fetch('https://api.cambio.today/v1/quotes/BRL/ARS/json?quantity=1&key=4838|NQCQkXuOq1r9LkiQOZO~uYaOBZDk3GEB')
+    .then(response => response.json())
+    .then(json => {
+        const precio = String((json.result.value).toFixed(2))
+        res.send({
+            "moneda": 'real',
+            "precio": precio
+        })
+    })
 }
 
 module.exports = cotizacionController
