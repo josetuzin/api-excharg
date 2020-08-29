@@ -10,7 +10,7 @@ cotizacionController.getCotizacionDolar = async (req, res) => {
         const precio = String((json.result.value).toFixed(2))
         res.send({
             "moneda": 'dolar',
-            "valor": precio
+            "precio": precio
         })
     })
 
@@ -23,7 +23,7 @@ cotizacionController.getCotizacionEuro = async (req, res) => {
         const precio = String((json.result.value).toFixed(2))
         res.send({
             "moneda": 'euro',
-            "valor": precio
+            "precio": precio
         })
     })
 }
